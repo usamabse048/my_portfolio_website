@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:my_portfolio/widgets/my_appbar_action_button.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:my_portfolio/widgets/responsive_widget.dart';
 
 class LargeHomeScreen extends StatefulWidget {
   const LargeHomeScreen({Key? key}) : super(key: key);
@@ -115,7 +116,7 @@ class _LargeHomeScreenState extends State<LargeHomeScreen> {
                     Positioned(
                       left: MediaQuery.of(context).size.width * 0.1,
                       top: 300,
-                      child: Container(
+                      child: SizedBox(
                         height: 400,
                         width: 500,
                         child: Column(
@@ -198,9 +199,9 @@ class _LargeHomeScreenState extends State<LargeHomeScreen> {
                       width: 10,
                     ),
                     MyAppbarActionButton(
-                      text: "Skills",
+                      text: "Services",
                       onTap: () {
-                        _controller.animateTo(2 * screenHeight,
+                        _controller.animateTo(screenHeight + 650,
                             curve: Curves.linear,
                             duration: Duration(milliseconds: 500));
                       },
@@ -210,9 +211,9 @@ class _LargeHomeScreenState extends State<LargeHomeScreen> {
                       width: 10,
                     ),
                     MyAppbarActionButton(
-                      text: "Services",
+                      text: "Skills",
                       onTap: () {
-                        _controller.animateTo(3 * screenHeight,
+                        _controller.animateTo(screenHeight + 2 * 650,
                             curve: Curves.linear,
                             duration: Duration(milliseconds: 500));
                       },
@@ -253,34 +254,146 @@ class _LargeHomeScreenState extends State<LargeHomeScreen> {
               delegate: SliverChildListDelegate(
                 [
                   Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.yellow,
-                    child: Center(
-                      child: Text(
-                        "About",
-                        style: TextStyle(fontSize: 40),
-                      ),
+                    padding: EdgeInsets.all(20),
+                    height: 650,
+                    width: screenWidth,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        SectionHeading(
+                            heading: "About",
+                            subheading: "who I am",
+                            headingColor: Colors.black),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.1,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              height: 300,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.asset(
+                                    "assets/images/aboutImage.jpeg",
+                                    fit: BoxFit.cover),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(20),
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: Column(
+                                children: [
+                                  if (ResponsiveWidget.isLargeScreen(context))
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "I am Usama Ilyas and I am ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 24.0),
+                                        ),
+                                        DefaultTextStyle(
+                                          style: const TextStyle(
+                                              fontSize: 24.0,
+                                              color: Colors.red),
+                                          child: AnimatedTextKit(
+                                            repeatForever: true,
+                                            animatedTexts: [
+                                              TypewriterAnimatedText(
+                                                'Software Engineer',
+                                                speed:
+                                                    Duration(milliseconds: 150),
+                                              ),
+                                              TypewriterAnimatedText(
+                                                'Flutter Developer',
+                                                speed:
+                                                    Duration(milliseconds: 150),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  if (ResponsiveWidget.isMediumScreen(context))
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "I am Usama Ilyas and",
+                                          textAlign: TextAlign.justify,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 24.0),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "I am ",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 24.0),
+                                            ),
+                                            DefaultTextStyle(
+                                              style: const TextStyle(
+                                                  fontSize: 24.0,
+                                                  color: Colors.red),
+                                              child: AnimatedTextKit(
+                                                repeatForever: true,
+                                                animatedTexts: [
+                                                  TypewriterAnimatedText(
+                                                    'Software Engineer',
+                                                    speed: Duration(
+                                                        milliseconds: 150),
+                                                  ),
+                                                  TypewriterAnimatedText(
+                                                    'Flutter Developer',
+                                                    speed: Duration(
+                                                        milliseconds: 150),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "I am a Software Engineer and Flutter Developer, recently graduated from COMSATS University Islamabad. I have experience of more than two years in Mobile Application Development. As a freelancer I have worked with clients from all accross the world. I am a good problem solver and love to work in teams. ",
+                                    style: TextStyle(fontSize: 20),
+                                    textAlign: TextAlign.justify,
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.green,
-                    child: Center(
-                      child: Text(
-                        "Skills",
-                        style: TextStyle(fontSize: 40),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height,
+                    height: 650,
                     width: MediaQuery.of(context).size.width,
                     color: Colors.green,
                     child: Center(
                       child: Text(
                         "Services",
+                        style: TextStyle(fontSize: 40),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 650,
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.yellow,
+                    child: Center(
+                      child: Text(
+                        "Skills",
                         style: TextStyle(fontSize: 40),
                       ),
                     ),
@@ -314,6 +427,57 @@ class _LargeHomeScreenState extends State<LargeHomeScreen> {
         },
         body: Container(),
       ),
+    );
+  }
+}
+
+class SectionHeading extends StatelessWidget {
+  const SectionHeading(
+      {Key? key,
+      required this.heading,
+      required this.subheading,
+      required this.headingColor})
+      : super(key: key);
+
+  final String heading, subheading;
+  final Color headingColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 20,
+        ),
+        Text(
+          heading,
+          style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(height: 3, width: 30, color: headingColor),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                subheading,
+                style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+              height: 3,
+              width: 30,
+              color: Colors.black,
+            ),
+          ],
+        )
+      ],
     );
   }
 }
